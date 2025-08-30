@@ -106,7 +106,7 @@ const ListingDetails = () => {
         <div className="photos">
           {listing.listingPhotoPaths?.map((item) => (
             <img
-              src={`http://localhost:3001/${item.replace("public", "")}`}
+              src={`${item.replace("public", "")}`}
               alt="listing photo"
             />
           ))}
@@ -124,7 +124,7 @@ const ListingDetails = () => {
 
         <div className="profile">
           <img
-            src={`http://localhost:3001/${listing.creator.profileImagePath.replace(
+            src={`${listing.creator.profileImagePath.replace(
               "public",
               ""
             )}`}
