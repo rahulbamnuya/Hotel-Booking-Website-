@@ -219,10 +219,12 @@ A typical user flow for registration, listing, or booking follows this sequence:
 4. The new user document is saved in MongoDB.
 5. Upon login, the backend verifies the user's password and generates a JWT, which is then sent back to the frontend for session management.
 ## 9️⃣ Notes for GitHub
-ERD Diagram
-An Entity-Relationship Diagram illustrating the relationships between the User, Listing, and Booking collections should be included here.
-Sample API Requests/Responses
-Provide examples of API requests and their corresponding responses in your README to guide developers.
+1. A **User** can create many **Listings**.
+2. A **User** (as a customer) can create many **Bookings**.
+3. A **User** (as a host) can be associated with many **Bookings**.
+4. A **Listing** can be part of many **Bookings**.
+5. erDiagram
+  
 ## Environment Variables
 Create a .env.example file with the following environment variables:
 ```
