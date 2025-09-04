@@ -210,7 +210,8 @@ A typical user flow for registration, listing, or booking follows this sequence:
 4. **MongoDB (Mongoose Models)** interacts with the database.  
 5. **Cloudinary** is utilized for image uploads (if applicable).  
 6. A **Response** is sent back to the Frontend.  
-![Registration, Listing, or Booking](SystemDesig/User_Flow.png)
+<img src="User_Flow.png" alt="Registration, Listing, or Booking user flow"
+     style="width:480px; height:auto; display:block;">
 
 ## 8️⃣ Authentication Flow
 1. A user sends a POST request to `/auth/register` with their profile information and an image.
