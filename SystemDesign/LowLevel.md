@@ -224,6 +224,8 @@ A typical user flow for registration, listing, or booking follows this sequence:
 3. A **User** (as a host) can be associated with many **Bookings**.
 4. A **Listing** can be part of many **Bookings**.
 5. erDiagram
+![Screenshot 1](https://github.com/rahulbamnuya/Tenent_Bill_Management/raw/main/public/images/Screenshot%202025-05-06%20235227.png)
+
   
 ## Environment Variables
 Create a .env.example file with the following environment variables:
