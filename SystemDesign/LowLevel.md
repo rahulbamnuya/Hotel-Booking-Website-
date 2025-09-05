@@ -13,6 +13,7 @@ This repository contains the backend implementation of the Dream Nest platform.
 *   **File Storage:** Cloudinary (for images)
 *   **Authentication:** JWT + Bcrypt
 *   **API Testing:** Postman / Swagger (optional)
+*   **Notifications:** Twilio SMS API
 
 ## 2️⃣ Modules & Features
 
@@ -165,6 +166,7 @@ backend/
 │
 ├── utils/
 │   └── cloudinary.js
+    |── Notification.js
 │
 ├── middlewares/
 │   └── authMiddleware.js
@@ -219,7 +221,18 @@ A typical user flow for registration, listing, or booking follows this sequence:
 3. The user's password is an encrypted hash using `bcrypt`.
 4. The new user document is saved in MongoDB.
 5. Upon login, the backend verifies the user's password and generates a JWT, which is then sent back to the frontend for session management.
-## 9️⃣ Notes for GitHub
+## 9️⃣Notifications (notification)
+1.Send SMS booking confirmations using Twilio SMS API.
+2.Triggered automatically when a new booking is created.
+3.Configurable sender/receiver via environment variables.
+## 🔟API Flow (with Notifications)
+1.User makes a POST request → /bookings/create
+2.Backend saves booking into MongoDB
+3.After success, backend calls Notification Utility (utils/notification.js)
+Twilio sends SMS → "🎉 Booking confirmed! Your stay is from {startDate} to {endDate}"
+
+Response returned to frontend
+## 1️⃣1️⃣ Notes for GitHub
 1. A **User** can create many **Listings**.
 2. A **User** (as a customer) can create many **Bookings**.
 3. A **User** (as a host) can be associated with many **Bookings**.
@@ -238,4 +251,10 @@ JWT_SECRET=<your_jwt_secret>
 CLOUDINARY_CLOUD_NAME=<cloud_name>
 CLOUDINARY_API_KEY=<api_key>
 CLOUDINARY_API_SECRET=<api_secret>
+# Twilio SMS Notifications
+TWILIO_ACCOUNT_SID=<your_twilio_sid>
+TWILIO_AUTH_TOKEN=<your_twilio_auth_token>
+TWILIO_PHONE_NUMBER=<your_twilio_registered_phone>
+RECIPIENT_PHONE_NUMBER=<test_number_to_receive_sms>
+
 ```
