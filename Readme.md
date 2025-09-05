@@ -10,6 +10,7 @@ A full-stack MERN application for hotel booking with authentication, image uploa
 - **Database:** MongoDB (Atlas)
 - **Authentication:** JWT
 - **File Uploads:** Cloudinary
+- **Notifications:** Twilio SMS API
 
 ---
 
@@ -39,6 +40,11 @@ A full-stack MERN application for hotel booking with authentication, image uploa
    CLOUDINARY_CLOUD_NAME=your_cloud_name
    CLOUDINARY_API_KEY=your_api_key
    CLOUDINARY_API_SECRET=your_api_secret
+   # Twilio SMS Notifications
+   TWILIO_ACCOUNT_SID=your_twilio_sid
+   TWILIO_AUTH_TOKEN=your_twilio_auth_token
+   TWILIO_PHONE_NUMBER=your_twilio_phone_number
+   RECIPIENT_PHONE_NUMBER=your_test_recipient_number
 
    ```
 4. **Run the project**
