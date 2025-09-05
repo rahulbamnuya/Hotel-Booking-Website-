@@ -213,7 +213,7 @@ A typical user flow for registration, listing, or booking follows this sequence:
 5. **Cloudinary** is utilized for image uploads (if applicable).  
 6. A **Response** is sent back to the Frontend.  
 <img src="User_Flow.png" alt="Registration, Listing, or Booking user flow"
-     style="width:480px; height:auto; display:block;">
+     style="width:380px; height:auto; display:block;">
 
 ## 8️⃣ Authentication Flow
 1. A user sends a POST request to `/auth/register` with their profile information and an image.
@@ -223,12 +223,17 @@ A typical user flow for registration, listing, or booking follows this sequence:
 5. Upon login, the backend verifies the user's password and generates a JWT, which is then sent back to the frontend for session management.
 ## 9️⃣Notifications (notification)
 1.Send SMS booking confirmations using Twilio SMS API.
+
 2.Triggered automatically when a new booking is created.
+
 3.Configurable sender/receiver via environment variables.
 ## 🔟API Flow (with Notifications)
 1.User makes a POST request → /bookings/create
+
 2.Backend saves booking into MongoDB
+
 3.After success, backend calls Notification Utility (utils/notification.js)
+
 Twilio sends SMS → "🎉 Booking confirmed! Your stay is from {startDate} to {endDate}"
 
 Response returned to frontend
