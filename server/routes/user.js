@@ -8,7 +8,10 @@ const Listing = require("../models/Listing")
 router.get("/:userId/trips", async (req, res) => {
   try {
     const { userId } = req.params
-    const trips = await Booking.find({ customerId: userId }).populate("customerId hostId listingId")
+    const trips = await Booking.find({ customerId: userId })
+  .populate("customerId hostId listingId")
+  .sort({ createdAt: -1 }); // 👈 newest first
+
     res.status(202).json(trips)
   } catch (err) {
     console.log(err)

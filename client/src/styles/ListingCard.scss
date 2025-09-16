@@ -1,4 +1,46 @@
 @import "./variables.scss";
+.qr-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.qr-note {
+  font-size: 0.9rem;
+  margin-top: 8px;
+  color: #555;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
 
 .listing-card {
   position: relative;
@@ -87,5 +129,20 @@
     cursor: pointer;
     z-index: 999;
     background: none;
+  }
+}
+.payment-status {
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  &.paid {
+    color: #0f5132;
+    background-color: #d1e7dd;
+  }
+
+  &.pending {
+    color: #664d03;
+    background-color: #fff3cd;
   }
 }

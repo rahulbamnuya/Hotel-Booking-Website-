@@ -101,44 +101,53 @@ const CreateListing = () => {
     e.preventDefault();
 
     try {
-      /* Create a new FormData onject to handle file uploads */
-      const listingForm = new FormData();
-      listingForm.append("creator", creatorId);
-      listingForm.append("category", category);
-      listingForm.append("type", type);
-      listingForm.append("streetAddress", formLocation.streetAddress);
-      listingForm.append("aptSuite", formLocation.aptSuite);
-      listingForm.append("city", formLocation.city);
-      listingForm.append("province", formLocation.province);
-      listingForm.append("country", formLocation.country);
-      listingForm.append("guestCount", guestCount);
-      listingForm.append("bedroomCount", bedroomCount);
-      listingForm.append("bedCount", bedCount);
-      listingForm.append("bathroomCount", bathroomCount);
-      listingForm.append("amenities", amenities);
-      listingForm.append("title", formDescription.title);
-      listingForm.append("description", formDescription.description);
-      listingForm.append("highlight", formDescription.highlight);
-      listingForm.append("highlightDesc", formDescription.highlightDesc);
-      listingForm.append("price", formDescription.price);
+  const listingForm = new FormData();
+  listingForm.append("creator", creatorId);
+  listingForm.append("category", category);
+  listingForm.append("type", type);
+  listingForm.append("streetAddress", formLocation.streetAddress);
+  listingForm.append("aptSuite", formLocation.aptSuite);
+  listingForm.append("city", formLocation.city);
+  listingForm.append("province", formLocation.province);
+  listingForm.append("country", formLocation.country);
+  listingForm.append("guestCount", guestCount);
+  listingForm.append("bedroomCount", bedroomCount);
+  listingForm.append("bedCount", bedCount);
+  listingForm.append("bathroomCount", bathroomCount);
+  listingForm.append("amenities", amenities);
+  listingForm.append("title", formDescription.title);
+  listingForm.append("description", formDescription.description);
+  listingForm.append("highlight", formDescription.highlight);
+  listingForm.append("highlightDesc", formDescription.highlightDesc);
+  listingForm.append("price", formDescription.price);
 
-      /* Append each selected photos to the FormData object */
-      photos.forEach((photo) => {
-        listingForm.append("listingPhotos", photo);
-      });
+  // Append photos
+  photos.forEach((photo) => {
+    listingForm.append("listingPhotos", photo);
+  });
 
-      /* Send a POST request to server */
-      const response = await fetch("http://localhost:3001/properties/create", {
-        method: "POST",
-        body: listingForm,
-      });
+  // ✅ Get token from localStorage (or cookies)
+  const token = localStorage.getItem("token");
 
-      if (response.ok) {
-        navigate("/");
-      }
-    } catch (err) {
-      console.log("Publish Listing failed", err.message);
-    }
+  // Send POST with Authorization header
+  const response = await fetch("http://localhost:3001/properties/create", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`, // 🔑 Send JWT token
+    },
+    body: listingForm, // don't set Content-Type manually
+  });
+
+  if (response.ok) {
+    navigate("/");
+  } else {
+    const errorData = await response.json();
+    console.log("Failed:", errorData.message);
+  }
+} catch (err) {
+  console.log("Publish Listing failed", err.message);
+}
+
   };
   return (
     <>
