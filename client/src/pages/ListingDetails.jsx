@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
+import { apiFetch } from "../api";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -22,8 +23,8 @@ const ListingDetails = () => {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3001/properties/${listingId}`,
+        const response = await apiFetch(
+          `/properties/${listingId}`,
           { method: "GET" }
         );
         const data = await response.json();
@@ -79,7 +80,7 @@ const ListingDetails = () => {
         paymentStatus: "Paid", // ✅ mark as Paid after fake payment
       };
 
-      const response = await fetch("http://localhost:3001/bookings/create", {
+      const response = await apiFetch("/bookings/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingForm),

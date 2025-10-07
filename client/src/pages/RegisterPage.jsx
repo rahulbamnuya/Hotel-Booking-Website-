@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
+import { apiFetch } from "../api";
 import "../styles/Register.scss";
 
 const RegisterPage = () => {
@@ -39,7 +40,7 @@ const RegisterPage = () => {
         register_form.append(key, formData[key])
       }
 
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await apiFetch("/auth/register", {
         method: "POST",
         body: register_form
       })

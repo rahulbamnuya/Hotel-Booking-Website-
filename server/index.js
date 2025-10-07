@@ -74,3 +74,8 @@ mongoose
     app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
   })
   .catch((err) => console.error("❌ MongoDB connection error:", err.message));
+
+/* ---------- HEALTH CHECK FOR RENDER ---------- */
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});

@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
+import { apiFetch } from "../api";
 
 const ListingCard = ({
   listingId,
@@ -49,11 +50,11 @@ const ListingCard = ({
 
   const patchWishList = async () => {
     if (user?._id !== creator._id) {
-    const response = await fetch(
-      `http://localhost:3001/users/${user?._id}/${listingId}`,
+    const response = await apiFetch(
+      `/users/${user?._id}/${listingId}`,
       {
         method: "PATCH",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
       }

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTripList } from "../redux/state";
 import BookingCardTrip from "../components/BookingCardTrip";
 import Footer from "../components/Footer";
+import { apiFetch } from "../api";
 
 const TripList = () => {
   const [loading, setLoading] = useState(true);
@@ -16,8 +17,8 @@ const TripList = () => {
 
   const getTripList = useCallback(async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/users/${userId}/trips`,
+      const response = await apiFetch(
+        `/users/${userId}/trips`,
         { method: "GET" }
       );
       const data = await response.json();

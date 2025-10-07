@@ -4,6 +4,7 @@ import { useSelector,useDispatch  } from "react-redux";
 import { setListings } from "../redux/state";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader"
+import { apiFetch } from "../api";
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
@@ -17,7 +18,7 @@ const SearchPage = () => {
 
   const getSearchListings = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/properties/search/${search}`, {
+      const response = await apiFetch(`/properties/search/${search}`, {
         method: "GET"
       })
 

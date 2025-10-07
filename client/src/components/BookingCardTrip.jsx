@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
 import { QRCodeCanvas } from "qrcode.react"; // ✅ QR code import
+import { apiFetch } from "../api";
 
 const BookingCardTrip = ({
   listingId,
@@ -50,8 +51,8 @@ const BookingCardTrip = ({
 
   const patchWishList = async () => {
     if (user?._id !== creator._id) {
-      const response = await fetch(
-        `http://localhost:3001/users/${user?._id}/${listingId}`,
+      const response = await apiFetch(
+        `/users/${user?._id}/${listingId}`,
         {
           method: "PATCH",
           headers: {

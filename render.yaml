@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: dream-nest-server
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm ci && cd ../client && npm ci && npm run build
+    startCommand: node index.js
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Set these in Render dashboard with your real values
+      # - key: MONGO_URL
+      #   sync: false
+      # - key: JWT_SECRET
+      #   sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /
+    buildFilter:
+      paths:
+        - client/**
+        - server/**
+    previews:
+      generatePreviewUrl: true
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/server/public/uploads
+  # Optional: If you prefer a separate static site for client, uncomment below and set REACT_APP_API_URL
+  # - type: web
+  #   name: dream-nest-client-build
+  #   env: static
+  #   rootDir: client
+  #   buildCommand: npm ci && npm run build
+  #   staticPublishPath: build
+  #   autoDeploy: false
+

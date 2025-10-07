@@ -11,6 +11,7 @@ import { BiTrash } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer"
+import { apiFetch } from "../api";
 
 const CreateListing = () => {
   const [category, setCategory] = useState("");
@@ -130,7 +131,7 @@ const CreateListing = () => {
   const token = localStorage.getItem("token");
 
   // Send POST with Authorization header
-  const response = await fetch("http://localhost:3001/properties/create", {
+  const response = await apiFetch("/properties/create", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`, // 🔑 Send JWT token
