@@ -16,8 +16,8 @@ app.use(express.json());
 
 // ✅ Serve frontend build from client/build
 const __dirname1 = path.resolve();
-app.use(express.static(path.join(__dirname1, "client", "build")));
 
+app.use(express.static(path.join(__dirname1, "../client/build")));
 // ✅ API Routes
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
@@ -29,7 +29,7 @@ app.get("/health", (req, res) => res.status(200).send("OK"));
 
 // ✅ Catch-all route for React (keep AFTER API routes)
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname1, "../client/build", "index.html"));
 });
 
 // ✅ MongoDB + Server setup
