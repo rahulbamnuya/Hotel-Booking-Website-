@@ -19,9 +19,9 @@
     "multer-gridfs-storage": "^5.0.2",
     "twilio": "^5.9.0"
   },
- "engines": {
-    "node": "18.x",
-    "npm": "9.x"
+  "engines": {
+    "node": "22.x",
+    "npm": "11.x"
   },
   "license": "ISC",
   "description": ""
